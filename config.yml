@@ -1,0 +1,11 @@
+site:
+  name: EvanLuo42's Blog
+  domain: localhost:63342
+  description: A Tech Blog
+  author:
+    name: EvanLuo42
+    email: ziyun.luo@icloud.com
+    link: https://phakel.com
+
+twitter_username: lzy_0402
+github_username: EvanLuo42
