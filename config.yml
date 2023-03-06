@@ -7,5 +7,11 @@ site:
     email: ziyun.luo@icloud.com
     link: https://phakel.com
 
-twitter_username: lzy_0402
-github_username: EvanLuo42
+gitalk:
+  client_id: xxx
+  client_secret: xxxx
+  repo: xxx
+  owner: xxx
+
+twitter_username: xxx
+github_username: xxx

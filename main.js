@@ -61,12 +61,15 @@ copyDir("templates/css", "gen/css", () => {})
 let postsPreview = []
 
 fs.readdirSync("source").forEach((path) => {
+    if (path === ".DS_Store") return
     let info = yaml.load(fs.readFileSync("source/" + path + "/info.yml", "utf8"));
-    postsPreview.push({
-        title: info.article.title,
-        link: info.article.link,
-        date: info.article.date.toUTCString(),
-    })
+    if (info.article.link !== "about") {
+        postsPreview.push({
+            title: info.article.title,
+            link: info.article.link,
+            date: info.article.date.toUTCString(),
+        })
+    }
     if (!fs.existsSync("gen/" + info.article.link)) {
         fs.mkdirSync("gen/" + info.article.link)
     }
@@ -79,7 +82,11 @@ fs.readdirSync("source").forEach((path) => {
         github_username: config.github_username,
         title: info.article.title,
         date: new Date(info.article.date).toUTCString(),
-        content: marked.parse(fs.readFileSync("source/" + path + "/" + info.article.title + ".md", "utf8"))
+        content: marked.parse(fs.readFileSync("source/" + path + "/" + info.article.title + ".md", "utf8")),
+        client_id: config.gitalk.client_id,
+        client_secret: config.gitalk.client_secret,
+        owner: config.gitalk.owner,
+        repo: config.gitalk.repo
     }))
     copyDir("templates/css", "gen/" + info.article.link + "/css", () => {})
     copyDir("source/" + path + "/assets", "gen/" + info.article.link + "/assets", () => {})
